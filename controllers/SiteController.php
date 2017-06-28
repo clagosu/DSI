@@ -17,54 +17,7 @@ class SiteController extends Controller
      * @inheritdoc
      */
     
-    public function actionCreate(){
-        $model = new formInstitucion;
-        $msg = null;
-        if($model->load(Yii::$app->request->post()))
-        {
-        if($model->validate()
-           {
-           $table = new institucion;
-               $table->nombre_institucion=$model->nombre_institucion;
-               $table->id_tipo_institucion=$model->id_tipo_institucion;
-               $table->id_institucion=$model->id_institucion;
-               $table->id_pais=$model->id_pais;
-               $table->vigente=$model->vigente;
-               $table->id_internacional=$model->id_internacional;
-               $table->rut_institucion=$model->rut_institucion;
-               $table->razon_social_institucion=$model->razon_social_institucion;
-               $table->direccion_institucion=$model->direccion_institucion;
-               $table->telefono_institucion=$model->telefono_institucion;
-               $table->email_institucion=$model->email_institucion;
-               $table->link_institucion=$model->link_institucion;
-               if($table->insert()){
-                   $msg = "Registro guardado correctamente";
-                   $model->nombre_institucion = null;
-                   $model->id_tipo_institucion = null;
-                   $model->id_institucion = null;
-                   $model->id_pais = null;
-                   $model->vigente = null;
-                   $model->id_internacional=null;
-                   $model->rut_institucion=null;
-                   $model razon_social_institucion=null;
-                   $model direccion_institucion=null;
-                   $model telefono_institucion=null;
-                   $model email_institucion=null;
-                   $model link_institucion=null;
-               }else{
-               $msg = "Ha ocurrido un error al insertar el registro";
-               }
-               
-               
-           }else{
-           
-           $model->getErrors();
-           }
-        }
-        return $this->render("create",['model' => $model, 'msg'=> $msg]);
-    }
-    
-    
+   
     
     public function behaviors()
     {

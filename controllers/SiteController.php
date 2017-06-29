@@ -17,7 +17,14 @@ use yii\helpers\Url;
 
 class SiteController extends Controller
 {
-
+    
+    
+   public function actionView()
+    {
+        $table = new Convenio;
+        $model = $table->find()->all();
+        return $this->render("view", ["model" => $model]);
+    }
     
     public function actionCreate()
     {

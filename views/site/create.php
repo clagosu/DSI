@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 
 <h1>Crear Actividades por Convenio</h1>
 <h3><?= $msg ?></h3>
-<?php $form = ActiveForm::begin([
+<?php $form = ActiveForm::begin([ 
     "method" => "post",
  'enableClientValidation' => true,
 ]);

@@ -17,6 +17,94 @@ use yii\helpers\Url;
 
 class SiteController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    
+      public function actionUpdate()
+    {
+        $model = new FormConvenio;
+        $msg = null;
+        
+        if($model->load(Yii::$app->request->post()))
+        {
+            if($model->validate())
+            {
+                $table = Convenio::findOne($model->id_convenio);
+                if($table)
+                {
+                $table->id_tipo_convenio = $model->id_tipo_convenio;
+                $table->id_coordinador_convenio = $model->id_coordinador_convenio;
+                $table->id_estado_convenio = $model->id_estado_convenio;
+                $table->nombre_convenio = $model->nombre_convenio;
+                $table->fecha_inicio = $model->fecha_inicio;
+                $table->fecha_termino = $model->fecha_termino;
+                $table->fecha_firma = $model->fecha_firma;
+                $table->fecha_decreto = $model->fecha_decreto;
+                $table->numero_decreto = $model->numero_decreto;
+                $table->descripcion = $model->descripcion;
+                $table->vigente = $model->vigente;
+                $table->vigencia = $model->vigencia;
+                    if ($table->update())
+                    {
+                        $msg = "El Convenio ha sido actualizado correctamente";
+                    }
+                    else
+                    {
+                        $msg = "El Convenio no ha podido ser actualizado";
+                    }
+                }
+                else
+                {
+                    $msg = "El Convenio seleccionado no ha sido encontrado";
+                }
+            }
+            else
+            {
+                $model->getErrors();
+            }
+        }
+        
+        
+        if (Yii::$app->request->get("id_convenio"))
+        {
+            $id_convenio = Html::encode($_GET["id_convenio"]);
+            if ((int) $id_convenio)
+            {
+                $table = Convenio::findOne($id_convenio);
+                if($table)
+                {
+                    $model->id_convenio = $table->id_convenio;
+                $model->id_tipo_convenio = $table->id_tipo_convenio;
+                $model->id_coordinador_convenio = $table->id_coordinador_convenio;
+                $model->id_estado_convenio = $table->id_estado_convenio;
+                $model->nombre_convenio = $table->nombre_convenio;
+                $model->fecha_inicio = $table->fecha_inicio;
+                $model->fecha_termino = $table->fecha_termino;
+                $model->fecha_firma = $table->fecha_firma;
+                $model->fecha_decreto = $table->fecha_decreto;
+                $model->numero_decreto = $table->numero_decreto;
+                $model->descripcion = $table->descripcion;
+                $model->vigente = $table->vigente;
+                $model->vigencia = $table->vigencia;
+                }
+                else
+                {
+                    return $this->redirect(["site/view"]);
+                }
+            }
+            else
+            {
+                return $this->redirect(["site/view"]);
+            }
+        }
+        else
+        {
+            return $this->redirect(["site/view"]);
+        }
+        return $this->render("update", ["model" => $model, "msg" => $msg]);
+    }
+    
     
     
    public function actionView()

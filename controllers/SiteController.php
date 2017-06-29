@@ -106,6 +106,36 @@ class SiteController extends Controller
     }
     
     
+    public function actionDelete()
+    {
+        if(Yii::$app->request->post())
+        {
+            $id_convenio = Html::encode($_POST["id_convenio"]);
+            if((int) $id_convenio)
+            {
+                if(Convenio::deleteAll("id_convenio=:id_convenio", [":id_convenio" => $id_convenio]))
+                {
+                    echo "Convenio con id $id_convenio eliminado con éxito, redireccionando ...";
+                    echo "<meta http-equiv='refresh' content='3; ".Url::toRoute("site/view")."'>";
+                }
+                else
+                {
+                    echo "Ha ocurrido un error al eliminar el convenio, redireccionando ...";
+                    echo "<meta http-equiv='refresh' content='3; ".Url::toRoute("site/view")."'>"; 
+                }
+            }
+            else
+            {
+                echo "Ha ocurrido un error al eliminar el convenio, redireccionando ...";
+                echo "<meta http-equiv='refresh' content='3; ".Url::toRoute("site/view")."'>";
+            }
+        }
+        else
+        {
+            return $this->redirect(["site/view"]);
+        }
+    }
+    
     
    public function actionView()
     {

@@ -43,7 +43,7 @@ class Institucion extends \yii\db\ActiveRecord
    ['nombre_institucion', 'match', 'pattern' => '/^.{3,500}$/', 'message' => 'Mínimo 3 y máximo 500 caracteres'],
    ['id_institucion', 'integer', 'message' => 'ID incorrecto'],
    ['id_institucion', 'required', 'message' => 'Campo requerido'],
-   ['id_institucion', 'UNIQUE', 'message' => 'Valor único'],
+   ['id_institucion', 'unique', 'message' => 'Valor único'],
    ['id_pais', 'integer', 'message' => 'ID incorrecto'],
    ['id_pais', 'required', 'message' => 'Campo requerido'],
    ['vigente', 'required', 'message' => 'Campo requerido'],

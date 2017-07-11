@@ -57,15 +57,14 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+         'allowedIPs' => ['127.0.0.1', '192.168.0.*', '192.168.178.20','186.106.240.57','127.0.0.3344','::1'] // adjust this to your needs
     ];
 
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
-    ];
+ $config['bootstrap'][] = 'gii';
+$config['modules']['gii'] = [
+    'class' => 'yii\gii\Module',
+    'allowedIPs' => ['*'],
+];
 }
 
 return $config;
